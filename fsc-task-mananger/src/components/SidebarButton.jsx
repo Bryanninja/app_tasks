@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SidebarButton({ children, variant }) {
+export default function SidebarButton({ children, variant = 'primary' }) {
   const getVariantClasses = () => {
     if (variant == 'unselected') {
       return 'text-[#35383e]';
