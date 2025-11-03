@@ -4,6 +4,7 @@ import TrashIcon from '../assets/icons/trash-2.svg?react';
 import CloudSunIcon from '../assets/icons/cloud-sun.svg?react';
 import SunIcon from '../assets/icons/sun.svg?react';
 import MoonIcon from '../assets/icons/moon.svg?react';
+import TasksSeparator from './TasksSeparator';
 
 function Tasks() {
   return (
@@ -31,28 +32,16 @@ function Tasks() {
 
       {/* Lista de Tarefas*/}
       <div className="rounded-xl bg-white p-6">
-        {/* MANHÃ */}
         <div className="space-y-3">
-          <div className="flex items-center gap-2 border-b border-solid border-[#F4F4F5] pb-1">
-            <SunIcon />
-            <p className="text-sm text-[#9A9C9F]">Manhã</p>
-          </div>
+          <TasksSeparator icon={<SunIcon />} title="Manhã" />
         </div>
 
-        {/* TARDE */}
-        <div className="my-3 space-y-3">
-          <div className="flex gap-2 border-b border-solid border-[#F4F4F5] pb-1">
-            <CloudSunIcon />
-            <p className="text-sm text-[#9A9C9F]">Tarde</p>
-          </div>
+        <div className="my-6 space-y-3">
+          <TasksSeparator icon={<CloudSunIcon />} title="Tarde" />
         </div>
 
-        {/* NOITE */}
         <div className="space-y-3">
-          <div className="flex gap-2 border-b border-solid border-[#F4F4F5] pb-1">
-            <MoonIcon />
-            <p className="text-sm text-[#9A9C9F]">Noite</p>
-          </div>
+          <TasksSeparator icon={<MoonIcon />} title="Noite" />
         </div>
       </div>
     </div>
