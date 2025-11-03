@@ -3,7 +3,7 @@ import CheckIcon from '../assets/icons/done.svg?react';
 import LoadingIcon from '../assets/icons/loading.svg?react';
 import InputIcon from '../assets/icons/input.svg?react';
 
-export default function TaskItem({ task }) {
+export default function TaskItem({ task, handleTaskCheckboxClick }) {
   const getStatusClasses = () => {
     if (task.status == 'done') {
       return 'bg-[#00ADB5] text-[#002C2E]';
@@ -20,16 +20,17 @@ export default function TaskItem({ task }) {
 
   return (
     <div
-      className={`flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 text-sm ${getStatusClasses()}`}
+      className={`flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 text-sm transition ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
-          className={`relative flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg ${getStatusClasses()}`}
+          className={`relative flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition ${getStatusClasses()}`}
         >
           <input
             type="checkbox"
             checked={task.status == 'done'}
             className="absolute h-full w-full cursor-pointer opacity-0"
+            onChange={() => handleTaskCheckboxClick(task.id)}
           />
           {task.status == 'done' && <CheckIcon />}
           {task.status == 'in_progress' && (
