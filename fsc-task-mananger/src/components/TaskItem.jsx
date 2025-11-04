@@ -1,8 +1,5 @@
 import React from 'react';
-import CheckIcon from '../assets/icons/done.svg?react';
-import LoadingIcon from '../assets/icons/loading.svg?react';
-import InputIcon from '../assets/icons/input.svg?react';
-import TrashIcon from '../assets/icons/trash-2.svg?react';
+import { DoneIcon, LoadingIcon, InputIcon, TrashIcon } from '../assets/icons';
 import Button from '../components/Button';
 
 export default function TaskItem({
@@ -38,7 +35,7 @@ export default function TaskItem({
             className="absolute h-full w-full cursor-pointer opacity-0"
             onChange={() => handleCheckboxClick(task.id)}
           />
-          {task.status == 'done' && <CheckIcon />}
+          {task.status == 'done' && <DoneIcon />}
           {task.status == 'in_progress' && (
             <LoadingIcon className="animate-spin" />
           )}

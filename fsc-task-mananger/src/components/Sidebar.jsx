@@ -1,7 +1,6 @@
 import React from 'react';
+import { HomeIcon, TasksIcon } from '../assets/icons';
 import SidebarButton from './SidebarButton';
-import HomeIcon from '../assets/icons/home.svg?react';
-import TasksIcon from '../assets/icons/tasks.svg?react';
 
 export default function SideBar() {
   return (
