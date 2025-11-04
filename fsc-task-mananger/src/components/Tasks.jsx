@@ -30,17 +30,17 @@ function Tasks() {
       }
 
       if (task.status == 'not_started') {
-        toast.success('tarefa iniciada com sucesso!');
+        toast.success('Tarefa iniciada com sucesso!');
         return { ...task, status: 'in_progress' };
       }
 
       if (task.status == 'in_progress') {
-        toast.success('tarefa concluída com sucesso!');
+        toast.success('Tarefa concluída com sucesso!');
         return { ...task, status: 'done' };
       }
 
       if (task.status == 'done') {
-        toast.success('tarefa reiniciada com sucesso!');
+        toast.success('Tarefa reiniciada com sucesso!');
         return { ...task, status: 'not_started' };
       }
 
