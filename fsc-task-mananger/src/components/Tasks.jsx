@@ -16,12 +16,16 @@ function Tasks() {
   const afternoonTasks = tasks.filter((task) => task.time == 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time == 'evening');
 
+  const handleTaskDeleteClick = (taskId) => {
+    const newTasks = tasks.filter((task) => task.id != taskId);
+    setTasks(newTasks);
+  };
+
   const handleTaskCheckboxClick = (taskId) => {
     const newTasks = tasks.map((task) => {
       if (task.id != taskId) {
         return task;
       }
-      //essa eu preciso atualizar
 
       if (task.status == 'not_started') {
         return { ...task, status: 'in_progress' };
@@ -47,7 +51,9 @@ function Tasks() {
           <span className="text-xs font-semibold text-[#00ADB5]">
             Minhas Tarefas
           </span>
-          <h2 className="text-xl font-semibold">Minhas tarefas</h2>
+          <h2 className="text-xl font-semibold text-[#35383E]">
+            Minhas tarefas
+          </h2>
         </div>
 
         <div className="flex items-center gap-3">
@@ -71,7 +77,8 @@ function Tasks() {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>
@@ -82,7 +89,8 @@ function Tasks() {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>
@@ -93,7 +101,8 @@ function Tasks() {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>

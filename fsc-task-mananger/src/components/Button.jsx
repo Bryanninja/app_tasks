@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Button({ children, variant = 'primary' }) {
+export default function Button({ children, variant = 'primary', ...rest }) {
   const getVariantClasses = () => {
     if (variant == 'primary') {
       return 'bg-[#00ADB5] text-white';
@@ -14,6 +14,7 @@ export default function Button({ children, variant = 'primary' }) {
   return (
     <button
       className={`flex items-center gap-2 rounded-md px-4 py-1 text-xs font-semibold transition hover:opacity-75 ${getVariantClasses()}`}
+      {...rest}
     >
       {children}
     </button>
