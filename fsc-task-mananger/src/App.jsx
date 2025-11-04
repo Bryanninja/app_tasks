@@ -1,5 +1,6 @@
 import { Toaster } from 'sonner';
-import SideBar from './components/SideBar';
+
+import Sidebar from './components/Sidebar';
 import Tasks from './components/Tasks';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
           },
         }}
       />
-      <SideBar />
+      <Sidebar />
       <Tasks />
     </div>
   );

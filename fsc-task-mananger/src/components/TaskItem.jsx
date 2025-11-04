@@ -1,5 +1,6 @@
 import React from 'react';
-import { DoneIcon, LoadingIcon, InputIcon, TrashIcon } from '../assets/icons';
+
+import { DoneIcon, InputIcon, LoadingIcon, TrashIcon } from '../assets/icons';
 import Button from '../components/Button';
 
 export default function TaskItem({
