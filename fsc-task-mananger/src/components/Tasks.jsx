@@ -67,7 +67,7 @@ function Tasks() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="secondary">
+          <Button variant="ghost">
             Limpar tarefas
             <TrashIcon />
           </Button>
@@ -77,7 +77,10 @@ function Tasks() {
             <AddIcon />
           </Button>
 
-          <AddTaskDialog isOpen={addTaskDialogIsOpen} />
+          <AddTaskDialog
+            isOpen={addTaskDialogIsOpen}
+            handleClose={() => setAddTaskDialogIsOpen(false)}
+          />
         </div>
       </div>
 
