@@ -50,10 +50,9 @@ export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
       });
     }
 
-    console.log({ errors });
+    setErrors(newErrors);
 
     if (newErrors.length > 0) {
-      setErrors(newErrors);
       return;
     }
 
@@ -119,7 +118,10 @@ export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
 
             <div className="flex gap-3">
               <Button
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose();
+                  setErrors([]);
+                }}
                 variant="secondary"
                 size="large"
                 className="w-full"
