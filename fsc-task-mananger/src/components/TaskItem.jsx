@@ -46,7 +46,7 @@ export default function TaskItem({
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="secondary" onClick={() => handleDeleteClick(task.id)}>
+        <Button variant="ghost" onClick={() => handleDeleteClick(task.id)}>
           <TrashIcon className="text-[#9A9C9F]" />
         </Button>
 
