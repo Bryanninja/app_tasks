@@ -1,6 +1,6 @@
 import './AddTaskDialog.css';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 } from 'uuid';
@@ -11,23 +11,22 @@ import InputLabel from './InputLabel';
 import TimeSelect from './TimeSelect';
 
 export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
-  const [title, setTitle] = useState();
-  const [time, setTime] = useState();
-  const [description, setDescription] = useState();
   const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef(null);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setTitle('');
-      setTime('');
-      setDescription('');
-    }
-  }, [isOpen]);
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const timesRef = useRef();
 
   const handleSaveClick = () => {
     const newErrors = [];
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+    const time = timesRef.current.value;
+
+    console.log(titleRef.current.value);
+    console.log(descriptionRef.current.value);
+    console.log(timesRef.current.value);
 
     if (!title.trim()) {
       newErrors.push({
@@ -96,24 +95,18 @@ export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
               id="title"
               label="Título"
               placeholder="Insira o título da tarefa"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
               errorMessage={titleError?.message}
+              ref={titleRef}
             />
 
-            <TimeSelect
-              value={time}
-              onChange={(event) => setTime(event.target.value)}
-              errorMessage={timeError?.message}
-            />
+            <TimeSelect errorMessage={timeError?.message} ref={timesRef} />
 
             <Input
               id="description"
               label="Descrição"
               placeholder="Descreva a tarefa"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
               errorMessage={decriptionError?.message}
+              ref={descriptionRef}
             />
 
             <div className="flex gap-3">
