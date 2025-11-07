@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function TasksSeparator({ title, icon }) {
   return (
@@ -8,3 +9,8 @@ export default function TasksSeparator({ title, icon }) {
     </div>
   );
 }
+
+TasksSeparator.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.element.isRequired,
+};
