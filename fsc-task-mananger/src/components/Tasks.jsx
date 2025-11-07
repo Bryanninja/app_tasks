@@ -63,10 +63,10 @@ function Tasks() {
     <div className="w-full space-y-6 px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
-          <span className="text-xs font-semibold text-[#00ADB5]">
+          <span className="text-brand-primary text-xs font-semibold">
             Minhas Tarefas
           </span>
-          <h2 className="text-xl font-semibold text-[#35383E]">
+          <h2 className="text-brand-dark-blue text-xl font-semibold">
             Minhas tarefas
           </h2>
         </div>

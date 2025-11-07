@@ -85,8 +85,10 @@ export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
         className="fixed bottom-0 left-0 top-0 flex h-screen w-screen items-center justify-center bg-[rgba(0,0,0,0.08)] backdrop-blur"
       >
         <div className="rounded-xl bg-white p-5 text-center shadow">
-          <h2 className="text-xl font-semibold text-[#35383E]">Nova Tarefa</h2>
-          <p className="m-1 mb-4 text-sm text-[#9A9C9F]">
+          <h2 className="text-brand-dark-blue text-xl font-semibold">
+            Nova Tarefa
+          </h2>
+          <p className="text-brand-text-gray m-1 mb-4 text-sm">
             Insira as informações abaixo
           </p>
 
