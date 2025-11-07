@@ -12,5 +12,5 @@ export default function TasksSeparator({ title, icon }) {
 
 TasksSeparator.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.node.isRequired,
 };
