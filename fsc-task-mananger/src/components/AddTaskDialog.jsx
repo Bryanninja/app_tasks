@@ -117,7 +117,7 @@ export default function AddTaskDialog({ isOpen, handleClose, handleSubmit }) {
                   handleClose();
                   setErrors([]);
                 }}
-                variant="secondary"
+                color="secondary"
                 size="large"
                 className="w-full"
               >
