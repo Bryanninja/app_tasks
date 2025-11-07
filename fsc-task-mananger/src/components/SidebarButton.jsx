@@ -1,21 +1,19 @@
 import React from 'react';
+import { tv } from 'tailwind-variants';
 
-export default function SidebarButton({ children, variant = 'primary' }) {
-  const getVariantClasses = () => {
-    if (variant == 'unselected') {
-      return 'text-brand-dark-blue';
-    }
-
-    if (variant == 'selected') {
-      return 'bg-brand-primary bg-opacity-10 text-brand-primary';
-    }
-  };
+export default function SidebarButton({ children, color }) {
+  const sidebar = tv({
+    base: 'flex items-center gap-2 rounded-lg px-6 py-3',
+    variants: {
+      color: {
+        selected: 'bg-brand-primary text-brand-primary bg-opacity-10',
+        unselected: 'text-brand-dark-blue',
+      },
+    },
+  });
 
   return (
-    <a
-      href="#"
-      className={`flex items-center gap-2 rounded-lg px-6 py-3 ${getVariantClasses()}`}
-    >
+    <a href="#" className={sidebar({ color })}>
       {children}
     </a>
   );
