@@ -18,7 +18,7 @@ const TimeSelect = forwardRef(({ errorMessage, ...rest }, ref) => {
         {...rest}
         ref={ref}
       >
-        <option value="" disabled selected>
+        <option value="" disabled>
           Escolha o Horário
         </option>
         <option value="morning">Manhã</option>
