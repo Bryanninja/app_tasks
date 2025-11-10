@@ -1,5 +1,5 @@
 // TimeSelect.jsx
-
+import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import InputErrorMessage from './InputErrorMessage';
@@ -33,5 +33,8 @@ const TimeSelect = forwardRef(({ errorMessage, ...rest }, ref) => {
 });
 
 TimeSelect.displayName = 'TimeSelect';
+TimeSelect.PropTypes = {
+  errorMessage: PropTypes.string,
+};
 
 export default TimeSelect;
