@@ -65,7 +65,17 @@ function Tasks() {
     setTasks(newTasks);
   };
 
-  const handleAddTaskSubmit = (task) => {
+  const handleAddTaskSubmit = async (task) => {
+    const response = await fetch('http://localhost:3000/tasks', {
+      method: 'POST',
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      return toast.error(
+        'Erro ao adiconar a tarefa. Por favor, tente Novamente.'
+      );
+    }
     setTasks([...tasks, task]);
     toast.success('Tarefa adiconada com sucesso!');
   };
