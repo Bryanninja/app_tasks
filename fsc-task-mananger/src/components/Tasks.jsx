@@ -8,7 +8,6 @@ import {
   SunIcon,
   TrashIcon,
 } from '../assets/icons';
-import TASKS from '../constants/tasks';
 import AddTaskDialog from './AddTaskDialog';
 import Button from './Button';
 import TaskItem from './TaskItem';
