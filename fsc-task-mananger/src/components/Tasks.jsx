@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import {
@@ -15,8 +15,20 @@ import TaskItem from './TaskItem';
 import TasksSeparator from './TasksSeparator';
 
 function Tasks() {
-  const [tasks, setTasks] = useState(TASKS);
+  const [tasks, setTasks] = useState([]);
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch('http://localhost:3000/tasks', {
+        method: 'GET',
+      });
+      const tasks = await response.json();
+      setTasks(tasks);
+    };
+
+    fetchTasks();
+  }, []);
 
   const morningTasks = tasks.filter((task) => task.time == 'morning');
   const afternoonTasks = tasks.filter((task) => task.time == 'afternoon');
@@ -63,10 +75,10 @@ function Tasks() {
     <div className="w-full space-y-6 px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
-          <span className="text-brand-primary text-xs font-semibold">
+          <span className="text-xs font-semibold text-brand-primary">
             Minhas Tarefas
           </span>
-          <h2 className="text-brand-dark-blue text-xl font-semibold">
+          <h2 className="text-xl font-semibold text-brand-dark-blue">
             Minhas tarefas
           </h2>
         </div>
