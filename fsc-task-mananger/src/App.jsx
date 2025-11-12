@@ -14,7 +14,9 @@ function App() {
         }}
       />
       <Sidebar />
-      <Tasks />
+      <div className="flex-1 pl-64">
+        <Tasks />
+      </div>
     </div>
   );
 }

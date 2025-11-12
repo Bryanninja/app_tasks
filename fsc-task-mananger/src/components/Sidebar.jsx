@@ -5,9 +5,9 @@ import SidebarButton from './SidebarButton';
 
 export default function SideBar() {
   return (
-    <div className="h-screen w-72 bg-white">
+    <div className="fixed left-0 top-0 h-screen w-64 bg-white">
       <div className="space-y-4 px-8 py-6">
-        <h1 className="text-brand-primary text-xl font-semibold">
+        <h1 className="text-xl font-semibold text-brand-primary">
           Task Mananger
         </h1>
         <p>
