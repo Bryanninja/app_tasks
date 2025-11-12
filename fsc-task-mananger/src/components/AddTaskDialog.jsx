@@ -108,9 +108,14 @@ export default function AddTaskDialog({
               placeholder="Insira o título da tarefa"
               errorMessage={titleError?.message}
               ref={titleRef}
+              disabled={saveIsLoading}
             />
 
-            <TimeSelect errorMessage={timeError?.message} ref={timesRef} />
+            <TimeSelect
+              errorMessage={timeError?.message}
+              ref={timesRef}
+              disabled={saveIsLoading}
+            />
 
             <Input
               id="description"
@@ -118,6 +123,7 @@ export default function AddTaskDialog({
               placeholder="Descreva a tarefa"
               errorMessage={decriptionError?.message}
               ref={descriptionRef}
+              disabled={saveIsLoading}
             />
 
             <div className="flex gap-3">
