@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import {
   AddIcon,
   CloudSunIcon,
+  LoadingIcon,
   MoonIcon,
   SunIcon,
   TrashIcon,
@@ -65,19 +66,13 @@ function Tasks() {
     setTasks(newTasks);
   };
 
-  const handleAddTaskSubmit = async (task) => {
-    const response = await fetch('http://localhost:3000/tasks', {
-      method: 'POST',
-      body: JSON.stringify(task),
-    });
-
-    if (!response.ok) {
-      return toast.error(
-        'Erro ao adiconar a tarefa. Por favor, tente Novamente.'
-      );
-    }
+  const onTaskSubmitSuccess = (task) => {
     setTasks([...tasks, task]);
     toast.success('Tarefa adiconada com sucesso!');
+  };
+
+  const onTaskSubmitErro = () => {
+    toast.error('Erro ao adiconar a tarefa. Por favor, tente Novamente.');
   };
 
   return (
@@ -106,7 +101,8 @@ function Tasks() {
           <AddTaskDialog
             isOpen={addTaskDialogIsOpen}
             handleClose={() => setAddTaskDialogIsOpen(false)}
-            handleSubmit={handleAddTaskSubmit}
+            onSubmitSuccess={onTaskSubmitSuccess}
+            onSubmitError={onTaskSubmitErro}
           />
         </div>
       </div>
