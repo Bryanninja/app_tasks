@@ -9,7 +9,7 @@ import { v4 } from 'uuid';
 
 import { LoadingIcon } from '../assets/icons';
 import Button from './Button';
-import Input from './input';
+import Input from './Input';
 import TimeSelect from './TimeSelect';
 
 export default function AddTaskDialog({
