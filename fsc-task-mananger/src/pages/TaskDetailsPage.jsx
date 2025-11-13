@@ -90,6 +90,7 @@ export default function TaskDetailsPage() {
     const newTask = await response.json();
     setTask(newTask);
     setSaveIsLoading(false);
+    toast.success('Tarefa editada com sucesso.');
   };
 
   const handleClickDeleteTask = async () => {
@@ -105,7 +106,7 @@ export default function TaskDetailsPage() {
     }
     setDeleteIsLoading(false);
     handleBackClick();
-    toast.success('ok');
+    toast.success('Tarefa deletada com sucesso.');
   };
 
   const titleError = errors.find((error) => error.inputName == 'title');
