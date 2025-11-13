@@ -47,20 +47,6 @@
       "id": "1ee8"
     },
     {
-      "id": "ce403ec4-95d7-47ca-8ec9-1112b335e618",
-      "title": "das",
-      "time": "afternoon",
-      "description": "dsada",
-      "status": "not_started"
-    },
-    {
-      "id": "64a294da-a7d7-49e3-b0da-3e7363d602a1",
-      "title": "Pagar o Iorgute",
-      "time": "evening",
-      "description": "Emilyzinha",
-      "status": "not_started"
-    },
-    {
       "id": "f5df63d8-18e3-4197-a4bc-18661c7efc8e",
       "title": "Falar de Deus for everyBody",
       "time": "morning",
@@ -68,24 +54,10 @@
       "status": "not_started"
     },
     {
-      "id": "2c9f0da4-b694-4835-a51d-91f9686f8214",
-      "title": "das",
+      "id": "f628887b-c8da-458c-90bf-5e253d662d0c",
+      "title": "Devocional Provérbios",
       "time": "morning",
-      "description": "dsa",
-      "status": "not_started"
-    },
-    {
-      "id": "7a378325-6319-4fce-ba0b-27ee71fb1097",
-      "title": "dasd",
-      "time": "morning",
-      "description": "asd",
-      "status": "not_started"
-    },
-    {
-      "id": "4419e580-fbbe-4e38-ab96-a1874256ea23",
-      "title": "dsad",
-      "time": "morning",
-      "description": "asd",
+      "description": "Capitulo 12",
       "status": "not_started"
     }
   ]
