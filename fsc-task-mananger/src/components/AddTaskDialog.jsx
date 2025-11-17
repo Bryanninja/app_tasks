@@ -1,8 +1,9 @@
 import './AddTaskDialog.css';
 
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
 import { toast } from 'sonner';
 import { v4 } from 'uuid';
@@ -18,68 +19,46 @@ export default function AddTaskDialog({
   onSubmitSuccess,
   onSubmitError,
 }) {
-  const [errors, setErrors] = useState([]);
-  const [saveIsLoading, setSaveIsLoading] = useState(false);
+  const {
+    reset,
+    register,
+    formState: { errors, isSubmitting },
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      title: '',
+      time: 'morning',
+      description: '',
+    },
+  });
 
-  const nodeRef = useRef(null);
-  const titleRef = useRef();
-  const descriptionRef = useRef();
-  const timesRef = useRef();
+  const nodeRef = useRef();
 
-  const handleSaveClick = async () => {
-    setSaveIsLoading(true);
-    const newErrors = [];
-    const title = titleRef.current.value;
-    const description = descriptionRef.current.value;
-    const time = timesRef.current.value;
-
-    if (!title.trim()) {
-      newErrors.push({
-        inputName: 'title',
-        message: 'O título é obrigatório',
-      });
-    }
-    if (!time.trim()) {
-      newErrors.push({
-        inputName: 'time',
-        message: 'O Horário é obrigatório',
-      });
-    }
-    if (!description.trim()) {
-      newErrors.push({
-        inputName: 'description',
-        message: 'A descrição é obrigatória',
-      });
-    }
-
-    setErrors(newErrors);
-    if (newErrors.length > 0) {
-      setSaveIsLoading(false);
-      toast.error('Não foi possivel salvar a tarefa');
-      return;
-    }
-
-    const task = { id: v4(), title, time, description, status: 'not_started' };
+  const handleSaveClick = async (data) => {
+    const task = {
+      id: v4(),
+      title: data.title.trim(),
+      time: data.time,
+      description: data.description.trim(),
+      status: 'not_started',
+    };
     const response = await fetch('http://localhost:3000/tasks', {
       method: 'POST',
       body: JSON.stringify(task),
     });
 
     if (!response.ok) {
-      setSaveIsLoading(false);
       return onSubmitError();
     }
 
     onSubmitSuccess(task);
-    setSaveIsLoading(false);
     handleClose();
+    reset({
+      title: '',
+      time: 'morning',
+      description: '',
+    });
   };
-
-  const titleError = errors.find((error) => error.inputName == 'title');
-  const timeError = errors.find((error) => error.inputName == 'time');
-  const decriptionError = errors.find(
-    (error) => error.inputName == 'description'
-  );
 
   return createPortal(
     <CSSTransition
@@ -101,40 +80,59 @@ export default function AddTaskDialog({
             Insira as informações abaixo
           </p>
 
-          <div className="flex w-[336px] flex-col space-y-4">
+          <form
+            onSubmit={handleSubmit(handleSaveClick)}
+            className="flex w-[336px] flex-col space-y-4"
+          >
             <Input
               id="title"
               label="Título"
               placeholder="Insira o título da tarefa"
-              errorMessage={titleError?.message}
-              ref={titleRef}
-              disabled={saveIsLoading}
+              disabled={isSubmitting}
+              errorMessage={errors?.title?.message}
+              {...register('title', {
+                required: 'O título é obrigatório.',
+                validate: (value) => {
+                  if (!value.trim()) {
+                    return 'O título não pode ser vazio.';
+                  }
+                  return true;
+                },
+              })}
             />
 
             <TimeSelect
-              errorMessage={timeError?.message}
-              ref={timesRef}
-              disabled={saveIsLoading}
+              disabled={isSubmitting}
+              errorMessage={errors?.time?.message}
+              {...register('time', {
+                required: true,
+              })}
             />
 
             <Input
               id="description"
               label="Descrição"
               placeholder="Descreva a tarefa"
-              errorMessage={decriptionError?.message}
-              ref={descriptionRef}
-              disabled={saveIsLoading}
+              disabled={isSubmitting}
+              errorMessage={errors?.description?.message}
+              {...register('description', {
+                required: 'A descrição é obrigatória.',
+                validate: (value) => {
+                  if (!value.trim()) {
+                    return 'A descrição não pode ser vazia.';
+                  }
+                  return true;
+                },
+              })}
             />
 
             <div className="flex gap-3">
               <Button
-                onClick={() => {
-                  handleClose();
-                  setErrors([]);
-                }}
+                onClick={handleClose}
                 color="secondary"
                 size="large"
                 className="w-full"
+                type="button"
               >
                 Cancelar
               </Button>
@@ -142,14 +140,14 @@ export default function AddTaskDialog({
               <Button
                 size="large"
                 className="w-full"
-                onClick={handleSaveClick}
-                disabled={saveIsLoading}
+                type="submit"
+                disabled={isSubmitting}
               >
-                {saveIsLoading && <LoadingIcon className="animate-spin" />}
+                {isSubmitting && <LoadingIcon className="animate-spin" />}
                 Salvar
               </Button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </CSSTransition>,

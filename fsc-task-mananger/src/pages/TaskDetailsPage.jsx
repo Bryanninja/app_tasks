@@ -174,7 +174,7 @@ export default function TaskDetailsPage() {
               </div>
             </div>
           </div>
-          <div className="flex w-full justify-end gap-3">
+          <div className="flex w-full justify-end gap-3 pt-4">
             <Button
               color="primary"
               size="large"
