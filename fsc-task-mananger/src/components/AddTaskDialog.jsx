@@ -60,6 +60,15 @@ export default function AddTaskDialog({
     });
   };
 
+  const handleCancelClick = () => {
+    reset({
+      title: '',
+      time: 'morning',
+      description: '',
+    });
+    handleClose();
+  };
+
   return createPortal(
     <CSSTransition
       nodeRef={nodeRef}
@@ -128,7 +137,7 @@ export default function AddTaskDialog({
 
             <div className="flex gap-3">
               <Button
-                onClick={handleClose}
+                onClick={handleCancelClick}
                 color="secondary"
                 size="large"
                 className="w-full"
