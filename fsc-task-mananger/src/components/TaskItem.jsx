@@ -1,31 +1,35 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { DoneIcon, InputIcon, LoadingIcon, TrashIcon } from '../assets/icons';
 import Button from '../components/Button';
 
-export default function TaskItem({
-  task,
-  handleCheckboxClick,
-  onDeleteSuccess,
-}) {
-  const [deleteIsLoading, setDeleteIsLoading] = useState(false);
+export default function TaskItem({ task, handleCheckboxClick }) {
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['deleteTask', task.id],
+    mutationFn: async () => {
+      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: 'DELETE',
+      });
+      return response.json();
+    },
+  });
 
   const handleDeleteClick = async () => {
-    setDeleteIsLoading(true);
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-      method: 'DELETE',
+    mutate(undefined, {
+      onSuccess: () => {
+        queryClient.setQueryData(['tasks'], (currentTasks) => {
+          return currentTasks.filter((oldTask) => oldTask.id != task.id);
+        });
+        toast.success('Tarefa deletada com sucesso!');
+      },
+      onError: () => {
+        toast.error('Erro ao deletar a tarefa!');
+      },
     });
-    if (!response.ok) {
-      setDeleteIsLoading(false);
-      return toast.error(
-        'Error ao deletar a tarefa. Por favor, tente novamente.'
-      );
-    }
-    onDeleteSuccess(task.id);
-    setDeleteIsLoading(false);
   };
 
   const getStatusClasses = () => {
@@ -66,12 +70,8 @@ export default function TaskItem({
       </div>
 
       <div className="flex items-center gap-2">
-        <Button
-          color="ghost"
-          onClick={handleDeleteClick}
-          disabled={deleteIsLoading}
-        >
-          {deleteIsLoading ? (
+        <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
+          {isPending ? (
             <LoadingIcon className="animate-spin" />
           ) : (
             <TrashIcon className="text-brand-text-gray" />

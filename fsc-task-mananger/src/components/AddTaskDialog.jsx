@@ -1,5 +1,6 @@
 import './AddTaskDialog.css';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
@@ -13,16 +14,26 @@ import Button from './Button';
 import Input from './Input';
 import TimeSelect from './TimeSelect';
 
-export default function AddTaskDialog({
-  isOpen,
-  handleClose,
-  onSubmitSuccess,
-  onSubmitError,
-}) {
+export default function AddTaskDialog({ isOpen, handleClose }) {
+  const queryClient = useQueryClient();
+  const { mutate, isPending: saveIsLoading } = useMutation({
+    mutationKey: 'addTask',
+    mutationFn: async (task) => {
+      const response = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        body: JSON.stringify(task),
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar tarefa.');
+      }
+      return response.json();
+    },
+  });
+
   const {
     reset,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     handleSubmit,
   } = useForm({
     defaultValues: {
@@ -42,21 +53,20 @@ export default function AddTaskDialog({
       description: data.description.trim(),
       status: 'not_started',
     };
-    const response = await fetch('http://localhost:3000/tasks', {
-      method: 'POST',
-      body: JSON.stringify(task),
-    });
 
-    if (!response.ok) {
-      return onSubmitError();
-    }
-
-    onSubmitSuccess(task);
-    handleClose();
-    reset({
-      title: '',
-      time: 'morning',
-      description: '',
+    mutate(task, {
+      onSuccess: () => {
+        queryClient.setQueryData(['tasks'], (currentTasks) => {
+          return [...(currentTasks || []), task]; // Corrigido com base na sugestão anterior
+        });
+        handleClose();
+        reset({
+          title: '',
+          time: 'morning',
+          description: '',
+        });
+      },
+      onError: () => toast.error('Erro ao adicionar a tarefa'),
     });
   };
 
@@ -97,7 +107,7 @@ export default function AddTaskDialog({
               id="title"
               label="Título"
               placeholder="Insira o título da tarefa"
-              disabled={isSubmitting}
+              disabled={saveIsLoading}
               errorMessage={errors?.title?.message}
               {...register('title', {
                 required: 'O título é obrigatório.',
@@ -111,7 +121,7 @@ export default function AddTaskDialog({
             />
 
             <TimeSelect
-              disabled={isSubmitting}
+              disabled={saveIsLoading}
               errorMessage={errors?.time?.message}
               {...register('time', {
                 required: true,
@@ -122,7 +132,7 @@ export default function AddTaskDialog({
               id="description"
               label="Descrição"
               placeholder="Descreva a tarefa"
-              disabled={isSubmitting}
+              disabled={saveIsLoading}
               errorMessage={errors?.description?.message}
               {...register('description', {
                 required: 'A descrição é obrigatória.',
@@ -150,9 +160,9 @@ export default function AddTaskDialog({
                 size="large"
                 className="w-full"
                 type="submit"
-                disabled={isSubmitting}
+                disabled={saveIsLoading}
               >
-                {isSubmitting && <LoadingIcon className="animate-spin" />}
+                {saveIsLoading && <LoadingIcon className="animate-spin" />}
                 Salvar
               </Button>
             </div>
