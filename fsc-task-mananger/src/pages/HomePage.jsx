@@ -15,10 +15,10 @@ export default function home() {
   const { data: tasks } = useGetTasks();
 
   const inProgressTasks = tasks?.filter(
-    (tasks) => tasks.status == 'in_Progress'
+    (tasks) => tasks.status == 'in_progress'
   ).length;
   const completedTasks = tasks?.filter(
-    (tasks) => tasks.status == 'completed'
+    (tasks) => tasks.status == 'done'
   ).length;
 
   return (
