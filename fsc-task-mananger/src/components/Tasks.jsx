@@ -1,5 +1,4 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
 import { toast } from 'sonner';
 
 import {
@@ -11,16 +10,14 @@ import {
   TrashIcon,
 } from '../assets/icons';
 import { useGetTasks } from '../hooks/data/use-get-tasks';
-import AddTaskDialog from './AddTaskDialog';
-import Button from './Button';
+import Header from './Header';
 import TaskItem from './TaskItem';
 import TasksSeparator from './TasksSeparator';
+import { taskQueryKeys } from '../keys/queries';
 
 function Tasks() {
   const queryClient = useQueryClient();
   const { data: tasks } = useGetTasks();
-
-  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
 
   const morningTasks = tasks?.filter((task) => task.time == 'morning');
   const afternoonTasks = tasks?.filter((task) => task.time == 'afternoon');
@@ -49,38 +46,12 @@ function Tasks() {
 
       return task;
     });
-    queryClient.setQueryData(['tasks'], newTasks);
+    queryClient.setQueryData(taskQueryKeys.getAll(), newTasks);
   };
 
   return (
     <div className="w-full space-y-6 px-8 py-16">
-      <div className="flex w-full justify-between">
-        <div>
-          <span className="text-xs font-semibold text-brand-primary">
-            Minhas Tarefas
-          </span>
-          <h2 className="text-xl font-semibold text-brand-dark-blue">
-            Minhas tarefas
-          </h2>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button color="ghost">
-            Limpar tarefas
-            <TrashIcon />
-          </Button>
-
-          <Button onClick={() => setAddTaskDialogIsOpen(true)}>
-            Nova Tarefas
-            <AddIcon />
-          </Button>
-
-          <AddTaskDialog
-            isOpen={addTaskDialogIsOpen}
-            handleClose={() => setAddTaskDialogIsOpen(false)}
-          />
-        </div>
-      </div>
+      <Header subtitle="Minhas Tarefas" title="Minhas Tarefas" />
 
       {/* Lista de Tarefas*/}
       <div className="rounded-xl bg-white p-6">
