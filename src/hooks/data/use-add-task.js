@@ -9,7 +9,7 @@ export const useAddTask = () => {
   return useMutation({
     mutationKey: taskMutationKeys.add(),
     mutationFn: async (task) => {
-      const { data: createdTask } = await api.post(`/tasks/${task}`);
+      const { data: createdTask } = await api.post(`/tasks`, task);
       return createdTask;
     },
     onSuccess: (createdTask) => {
