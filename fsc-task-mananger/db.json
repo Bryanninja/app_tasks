@@ -5,21 +5,7 @@
       "title": "Teste",
       "time": "evening",
       "description": "Testando",
-      "status": "done"
-    },
-    {
-      "id": "f97d0b35-f3c1-4b37-b383-b958194c954d",
-      "title": "34",
-      "time": "morning",
-      "description": "34",
       "status": "not_started"
-    },
-    {
-      "id": "d4603327-9b6a-4e1d-bf01-2f88ce4c787a",
-      "title": "as",
-      "time": "morning",
-      "description": "as",
-      "status": "done"
     }
   ]
 }
