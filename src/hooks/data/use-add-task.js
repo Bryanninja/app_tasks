@@ -1,18 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 
 import { taskMutationKeys } from '../../keys/mutations';
 import { taskQueryKeys } from '../../keys/queries';
+import { api } from '../../lib/axios';
 
 export const useAddTask = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: taskMutationKeys.add(),
     mutationFn: async (task) => {
-      const { data: createdTask } = await axios.post(
-        'http://localhost:3000/tasks',
-        task
-      );
+      const { data: createdTask } = await api.post(`/tasks/${task}`);
       return createdTask;
     },
     onSuccess: (createdTask) => {
