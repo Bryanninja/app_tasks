@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { AddIcon, TrashIcon } from '../assets/icons';
 import AddTaskDialog from './AddTaskDialog';
 import Button from './Button';
+import DeleteTasksDialog from './deleteTasksDialog';
 
 export default function Header({ subtitle, title }) {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
+  const [deleteTasksDialogIsOpen, setDeleteTasksDialogIsOpen] = useState(false);
   return (
     <div className="flex w-full justify-between">
       <div>
@@ -16,7 +18,7 @@ export default function Header({ subtitle, title }) {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button color="ghost">
+        <Button onClick={() => setDeleteTasksDialogIsOpen(true)} color="ghost">
           Limpar tarefas
           <TrashIcon />
         </Button>
@@ -25,6 +27,11 @@ export default function Header({ subtitle, title }) {
           Nova Tarefas
           <AddIcon />
         </Button>
+
+        <DeleteTasksDialog
+          isOpen={deleteTasksDialogIsOpen}
+          handleClose={() => setDeleteTasksDialogIsOpen(false)}
+        />
 
         <AddTaskDialog
           isOpen={addTaskDialogIsOpen}
