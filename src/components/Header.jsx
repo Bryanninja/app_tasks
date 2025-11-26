@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AddIcon, TrashIcon } from '../assets/icons';
 import AddTaskDialog from './AddTaskDialog';
 import Button from './Button';
-import DeleteTasksDialog from './deleteTasksDialog';
+import DeleteTasksDialog from './DeleteTasksDialog';
 
 export default function Header({ subtitle, title }) {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
