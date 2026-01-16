@@ -13,6 +13,7 @@
 Você pode testar a aplicação em produção agora mesmo:
 🔗 **[Clique aqui para acessar o Task Manager](https://app-tasks-red.vercel.app/)**
 
+---
 
 ## 📄 Sobre o Projeto
 
