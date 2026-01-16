@@ -47,6 +47,7 @@ O principal desafio deste projeto foi estruturar o código para ser **manutenív
 * Implementação de feedbacks visuais instantâneos para o usuário.
 * Design de interface limpo (Clean UI) focado na usabilidade.
   
+  ---
 <p align="center">
   Desenvolvido por <a href="https://www.linkedin.com/in/alexbryannt/">Álex Bryan</a>
 </p>
@@ -56,7 +57,7 @@ O principal desafio deste projeto foi estruturar o código para ser **manutenív
 Para rodar o Task Manager na sua máquina, siga estes passos:
 
 1. **Clone o repositório:**
-```bash
+```bash 
 git clone [https://github.com/Bryanninja/app-tasks.git](https://github.com/Bryanninja/app-tasks.git)
 
 # 2 Entre na pasta do projeto:
