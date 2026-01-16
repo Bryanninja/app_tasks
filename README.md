@@ -8,6 +8,12 @@
 
 *(Interface fluida com categorização por períodos do dia)*
 
+### 🚀 Acesse o Projeto
+
+Você pode testar a aplicação em produção agora mesmo:
+🔗 **[Clique aqui para acessar o Task Manager](https://app-tasks-red.vercel.app/)**
+
+
 ## 📄 Sobre o Projeto
 
 O **Task Manager** é uma aplicação de produtividade desenvolvida para resolver um problema comum em projetos de portfólio: a falta de estrutura escalável.
@@ -30,7 +36,7 @@ A stack foi escolhida pensando em modernidade e performance:
 * **TanStack Query (React Query):** Para gerenciamento de estado server-side, cache e *optimistic updates*.
 * **React Router DOM:** Para navegação SPA (Single Page Application) fluida.
 * **Tailwind CSS:** Para estilização utilitária e responsiva.
-* **React Hook Form:** (Se tiver usado para o formulário de nova tarefa, se não, pode remover essa linha).
+* **React Hook Form:** Para Editar as tarefas
 * **Vercel:** Pipeline de Deploy contínuo.
 
 ## 🧠 Desafios Técnicos Superados
@@ -39,14 +45,7 @@ O principal desafio deste projeto foi estruturar o código para ser **manutenív
 * Separação de responsabilidades (Componentes visuais x Lógica de dados).
 * Implementação de feedbacks visuais instantâneos para o usuário.
 * Design de interface limpo (Clean UI) focado na usabilidade.
-
----
-
-### 🚀 Acesse o Projeto
-
-Você pode testar a aplicação em produção agora mesmo:
-🔗 **[Clique aqui para acessar o Task Manager](https://app-tasks-red.vercel.app/)**
-
+  
 ---
 
 <p align="center">
