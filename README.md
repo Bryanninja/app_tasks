@@ -47,8 +47,33 @@ O principal desafio deste projeto foi estruturar o código para ser **manutenív
 * Implementação de feedbacks visuais instantâneos para o usuário.
 * Design de interface limpo (Clean UI) focado na usabilidade.
   
----
-
 <p align="center">
   Desenvolvido por <a href="https://www.linkedin.com/in/alexbryannt/">Álex Bryan</a>
 </p>
+
+### 💻 Como rodar o projeto localmente
+
+Para rodar o Task Manager na sua máquina, siga estes passos:
+
+1. **Clone o repositório:**
+```bash
+git clone [https://github.com/Bryanninja/app-tasks.git](https://github.com/Bryanninja/app-tasks.git)
+
+# 2 Entre na pasta do projeto:
+cd app-tasks
+
+# 3 Instale as dependências:
+npm install
+
+# 4 Inicie o servidor de desenvolvimento:
+npm run dev
+
+# 5 Acesse no navegador:
+O terminal vai mostrar o link local (geralmente http://localhost:5173 se for Vite)
+
+
+
+
+
+
+
