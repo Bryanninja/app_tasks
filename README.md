@@ -70,10 +70,3 @@ npm run dev
 
 # 5 Acesse no navegador:
 O terminal vai mostrar o link local (geralmente http://localhost:5173 se for Vite)
-
-
-
-
-
-
-
