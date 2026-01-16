@@ -37,7 +37,7 @@ A stack foi escolhida pensando em modernidade e performance:
 * **TanStack Query (React Query):** Para gerenciamento de estado server-side, cache e *optimistic updates*.
 * **React Router DOM:** Para navegação SPA (Single Page Application) fluida.
 * **Tailwind CSS:** Para estilização utilitária e responsiva.
-* **React Hook Form:** Para Editar as tarefas
+* **React Hook Form:** Para Editar as tarefas.
 * **Vercel:** Pipeline de Deploy contínuo.
 
 ## 🧠 Desafios Técnicos Superados
